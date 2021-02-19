@@ -8,6 +8,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.modelmapper.ModelMapper;
+import org.springframework.ui.ModelMap;
+
+import br.com.jt.commons.protocols.user.RoleRequest;
+import br.com.jt.commons.protocols.user.RoleResponse;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,5 +33,13 @@ public class Role implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
+	
+	public static Role decode(RoleRequest request) {
+		return new ModelMapper().map(request, Role.class);
+	}
+	
+	public static Role decode(RoleResponse response) {
+		return new ModelMapper().map(response, Role.class);
+	}
 
 }

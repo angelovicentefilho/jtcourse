@@ -14,6 +14,10 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.modelmapper.ModelMapper;
+
+import br.com.jt.commons.protocols.user.UserRequest;
+import br.com.jt.commons.protocols.user.UserResponse;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -45,5 +49,13 @@ public class User implements Serializable {
 	)
 	@ManyToMany(fetch = FetchType.EAGER)
 	private Set<Role> roles;
+	
+	public static User decode(UserRequest request) {
+		return new ModelMapper().map(request, User.class);
+	}
+	
+	public static User decode(UserResponse response) {
+		return new ModelMapper().map(response, User.class);
+	}
 
 }

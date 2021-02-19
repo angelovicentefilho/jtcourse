@@ -9,6 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.modelmapper.ModelMapper;
+
+import br.com.jt.commons.protocols.worker.WorkerRequest;
+import br.com.jt.commons.protocols.worker.WorkerResponse;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,5 +34,13 @@ public class Worker implements Serializable {
 	private Long id;
 	private String name;
 	private BigDecimal dailyIncome;
+	
+	public static Worker decode(WorkerRequest request) {
+		return new ModelMapper().map(request, Worker.class);
+	}
+	
+	public static Worker decode(WorkerResponse response) {
+		return new ModelMapper().map(response, Worker.class);
+	}
 	
 }
