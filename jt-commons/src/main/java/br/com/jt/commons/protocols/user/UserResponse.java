@@ -38,8 +38,12 @@ public class UserResponse implements Serializable, ProtocolResponse {
 		return new ModelMapper().map(user, UserResponse.class);
 	}
 
-	public static List<UserResponse> decode(List<User> users) {
+	public static List<UserResponse> encodeList(List<User> users) {
 		return users.stream().map(user -> encode(user))//
 				.collect(Collectors.toList());
+	}
+	
+	public static UserResponse encode(List<User> users) {
+		return UserResponse.newInstance().withUsers(encodeList(users)).build();
 	}
 }
