@@ -14,7 +14,6 @@ import br.com.jt.payroll.services.PaymentService;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/payments")
 public class PaymentResource {
 
 	private final PaymentService _service;
@@ -30,7 +29,7 @@ public class PaymentResource {
 		return this._service.payment(workerId, days);
 	}
 
-	public void paymentFallback(Long workerId, Integer id) {
+	public PaymentResponse paymentFallback(Long workerId, Integer id) {
 		throw new RuntimeException("O serviço de pagamento está fora do ar!!");
 	}
 	

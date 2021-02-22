@@ -3,10 +3,13 @@ package br.com.jt.user.validator;
 import java.io.Serializable;
 import java.util.Optional;
 
+import org.springframework.stereotype.Component;
+
 import br.com.jt.commons.entities.user.User;
 import br.com.jt.commons.exceptions.UserNotFoundException;
 import br.com.jt.commons.validator.JtValidator;
 
+@Component
 public class UserValidator implements Serializable, JtValidator<User> {
 
 	private static final long serialVersionUID = 7658060453794851421L;

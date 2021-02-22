@@ -14,7 +14,6 @@ import br.com.jt.worker.services.WorkerService;
 @RefreshScope
 @RestController
 @CrossOrigin
-@RequestMapping("/workers")
 public class WorkerResource {
 
 	private final WorkerService workerService;

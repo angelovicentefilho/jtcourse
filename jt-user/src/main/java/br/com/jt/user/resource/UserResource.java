@@ -20,7 +20,6 @@ import br.com.jt.user.services.UserServiceApi;
 @RefreshScope
 @RestController
 @CrossOrigin
-@RequestMapping("/users")
 public class UserResource {
 
 	private final UserServiceApi userService;
