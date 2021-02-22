@@ -10,8 +10,10 @@ import org.modelmapper.ModelMapper;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
+import br.com.jt.commons.entities.user.User;
 import br.com.jt.commons.entities.worker.Worker;
 import br.com.jt.commons.protocols.ProtocolResponse;
+import br.com.jt.commons.protocols.user.UserResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -37,8 +39,12 @@ public class WorkerResponse implements Serializable, ProtocolResponse {
 		return new ModelMapper().map(worker, WorkerResponse.class);
 	}
 
-	public static List<WorkerResponse> encode(List<Worker> workers) {
+	public static List<WorkerResponse> encodeList(List<Worker> workers) {
 		return workers.stream().map(worker -> encode(worker))//
 				.collect(Collectors.toList());
+	}
+	
+	public static WorkerResponse encode(List<Worker> workers) {
+		return WorkerResponse.newInstance().withWorkers(encodeList(workers)).build();
 	}
 }
